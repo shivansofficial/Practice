@@ -44,7 +44,7 @@ int max_sum_path(node * root,int &res)
   int l=max_sum_path(root->left,res);
   int r=max_sum_path(root->right,res);
   int max_single=max(l,r)+root->data;
-  res=max(res,max(max_single,l+r+root->data));
+  res=max(res,l+r+root->data);
   return max_single;
 }
 int main()
