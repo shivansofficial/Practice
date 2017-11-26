@@ -5,14 +5,20 @@
 
 using namespace std;
 
+typedef struct node {
+  struct node * left;
+  struct node * right;
+  int val;
+}node;
+
 int max_sum_path(node * root,int &maxed)
 {
   if(root==NULL)
     return 0;
   int l  = max_sum_path(root->left,maxed);
   int r =  max_sum_path(root->right,maxed);
-  int max_single = max(max(l,r) + root->data,root->data);
-  int max_top = max(max_single,l+r+root->data);
+  int max_single = max(max(l,r) + root->val,root->val);
+  int max_top = max(max_single,l+r+root->val);
   maxed = max(maxed,max_top);
   return max_single;
 }
