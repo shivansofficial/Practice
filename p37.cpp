@@ -4,6 +4,8 @@
 #include<map>
 #include<string>
 #include<queue>
+#include<unordered_map>
+#include<list>
 
 using namespace std;
 
@@ -23,13 +25,13 @@ public:
       if(dq.size()==cap)
       {
         dict.erase(dq.back());
-        dict.pop_back();
+        dq.pop_back();
       }
     }
     else
-      dict.erase(dict[x]);
-      dq.push_front(x);
-      dict[x] = dq.begin();
+      dq.erase(dict[x]);// Uses the list iterator thing to delete the element taht already exists
+    dq.push_front(x);
+    dict[x] = dq.begin();
 
   }
   void display()
@@ -41,5 +43,15 @@ public:
 };
 int main()
 {
+  int n;
+  cin>>n;
+  lru u = lru(n);
+    u.refer(1);
+    u.refer(2);
+    u.refer(3);
+    u.refer(1);
+    u.refer(4);
+    u.refer(5);
+    u.display();
   return 0;
 }
